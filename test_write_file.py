@@ -1,8 +1,10 @@
 from functions.write_to_file import write_file
 
 #test cases
+def test():
+    test_cases = [("lorem.txt", "wait, this isn't lorem ipsum"),("pkg/morelorem.txt", "lorem ipsum dolor sit amet"),("/tmp/temp.txt", "this should not be allowed")]
+    for path,content in test_cases:
+        print(write_file("calculator", path, content))
 
-test_cases = [("lorem.txt", "wait, this isn't lorem ipsum"),("pkg/morelorem.txt", "lorem ipsum dolor sit amet"),("/tmp/temp.txt", "this should not be allowed")]
-
-for path,content in test_cases:
-    print(write_file("calculator", path, content))
+if __name__ == "__main__":
+    test()
