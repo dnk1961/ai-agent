@@ -1,6 +1,7 @@
 import os
+from google.genai import types
 
-def write_to_file(working_directory, file_path, content):
+def write_file(working_directory, file_path, content):
     try:
         prefix_path = os.path.abspath(working_directory)
         target_path = os.path.normpath(os.path.join(prefix_path,file_path))
@@ -17,3 +18,17 @@ def write_to_file(working_directory, file_path, content):
 
     except Exception as e:
         return {e} 
+    
+schema_write_file = types.FunctionDeclaration(
+    name="write_file",
+    description="Write to a python file provided it exists within the working directory",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "directory": types.Schema(
+                type=types.Type.STRING,
+                description="Directory path to list files from, relative to the working directory (default is the working directory itself)",
+            ),
+        },
+    ),
+)
